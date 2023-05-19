@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Encriptador</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Encriptador / Desencriptador</h1>
+    
+    <label for="texto">Texto:</label>
+    <textarea id="texto" rows="4" cols="50"></textarea>
+    
+    <label for="opciones">Opciones:</label>
+    <select id="opciones">
+        <option value="encriptar">Encriptar</option>
+        <option value="desencriptar">Desencriptar</option>
+    </select>
+    
+    <button onclick="procesar()">Procesar</button>
+    
+    <label for="resultado">Resultado:</label>
+    <textarea id="resultado" rows="4" cols="50" readonly></textarea>
+    
+    <button onclick="copiarResultado()">Copiar</button>
+    
+    <script>
+        function procesar() {
+            var texto = document.getElementById("texto").value;
+            var opcion = document.getElementById("opciones").value;
+            var resultado = "";
+
+            if (opcion === "encriptar") {
+                resultado = encriptar(texto);
+            } else if (opcion === "desencriptar") {
+                resultado = desencriptar(texto);
+            }
+
+            document.getElementById("resultado").value = resultado;
+        }
+
+        function encriptar(texto) {
+            texto = texto.toLowerCase();
+            texto = texto.replace(/e/g, "enter");
+            texto = texto.replace(/i/g, "imes");
+            texto = texto.replace(/a/g, "ai");
+            texto = texto.replace(/o/g, "ober");
+            texto = texto.replace(/u/g, "ufat");
+            return texto;
+        }
+
+        function desencriptar(texto) {
+            texto = texto.toLowerCase();
+            texto = texto.replace(/enter/g, "e");
+            texto = texto.replace(/imes/g, "i");
+            texto = texto.replace(/ai/g, "a");
+            texto = texto.replace(/ober/g, "o");
+            texto = texto.replace(/ufat/g, "u");
+            return texto;
+        }
+
+        function copiarResultado() {
+            var resultado = document.getElementById("resultado");
+            resultado.select();
+            document.execCommand("copy");
+            alert("Texto copiado al portapapeles: " + resultado.value);
+        }
+    </script>
+</body>
+</html>
